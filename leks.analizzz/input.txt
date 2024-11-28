@@ -1,0 +1,11 @@
+int main()
+{
+    int rez, xz;
+    float x, z, y;
+    xz = 10;
+    z = 2.5;
+    x = 3.5;
+    y = x + z + y;
+    rez = itof(2);
+    return rez;
+}
