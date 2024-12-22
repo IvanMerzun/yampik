@@ -48,7 +48,9 @@ int main()
     {
         Parser parser("input.txt");
         Node ast = parser.parse();
-        ast.print(0);
+        ofstream outFile("outparser.txt");
+        ast.print(outFile);
+        outFile.close();
     }
     catch (const std::exception& e)
     {

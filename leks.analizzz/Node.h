@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <fstream>
 
 using namespace std;
 
@@ -28,16 +29,16 @@ public:
         return children.size();
     }
 
-    void print(int lvl) const 
+    void print(ofstream& outFile, int lvl = 0) const 
     {
         for (int i = 0; i < lvl; ++i) 
         {
-            cout << "  ";
+            outFile << "  ";
         }
-        cout << data << endl;
+        outFile << data << endl;
         for (const auto& child : children) 
         {
-            child.print(lvl + 1);
+            child.print(outFile, lvl + 1);
         }
     }
 };
