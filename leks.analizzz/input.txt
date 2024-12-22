@@ -1,10 +1,11 @@
-int main()
+float main()
 {
-    int rez, xz;
-    float x, z;
-    xz = 10;
-    z = 2.5 + 4.1;
+    int z, m, f;
+    float x, rez;
+    f = 50;
+    m = 10 + 4 + f;
+    z = 2;
     x = 3.5;
-    rez = ftoi(z + x - 4.0);
+    rez = itof(m + 20) + 4.5;
     return rez;
 }

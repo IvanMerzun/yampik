@@ -1,7 +1,7 @@
 Function
   Begin
     Type
-      int
+      float
     FunctionName
       main
     (
@@ -13,10 +13,13 @@ Function
         int
       VarList
         Id
-          rez
+          z
         ,
         Id
-          xz
+          m
+        ,
+        Id
+          f
       ;
     Descr
       Type
@@ -26,17 +29,34 @@ Function
           x
         ,
         Id
-          z
+          rez
       ;
   Operators
     Op
       Id
-        xz
+        f
+      =
+      Expr
+        SimpleExpr
+          Const
+            50
+      ;
+    Op
+      Id
+        m
       =
       Expr
         SimpleExpr
           Const
             10
+        +
+        SimpleExpr
+          Const
+            4
+        +
+        SimpleExpr
+          Id
+            f
       ;
     Op
       Id
@@ -45,11 +65,7 @@ Function
       Expr
         SimpleExpr
           Const
-            2.5
-        +
-        SimpleExpr
-          Const
-            4.1
+            2
       ;
     Op
       Id
@@ -66,21 +82,21 @@ Function
       =
       Expr
         SimpleExpr
-          ftoi
+          itof
           (
           Expr
             SimpleExpr
               Id
-                z
+                m
             +
             SimpleExpr
-              Id
-                x
-            -
-            SimpleExpr
               Const
-                4.0
+                20
           )
+        +
+        SimpleExpr
+          Const
+            4.5
       ;
   End
     return

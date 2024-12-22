@@ -1,6 +1,8 @@
-int rez xz 3 DECL
-float x z 3 DECL
-xz  10 =
-z  2.5 4.1 + =
+int z m f 4 DECL
+float x rez 3 DECL
+f  50 =
+m  10 4 f + + =
+z  2 =
 x  3.5 =
-rez  ftoi  z x 4.0 + - CALL =
+rez  itof  m 20 + CALL 4.5 + =
+Postfix notation successfully generated.
