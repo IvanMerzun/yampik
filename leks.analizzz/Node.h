@@ -25,8 +25,16 @@ public:
         return children.at(i); // Ѕезопасный доступ к дочернему узлу
     }
 
+    const Node& getSon(int i) const {
+        return children.at(i); // Ѕезопасный доступ к дочернему узлу
+    }
+
     int getChildCount() const { // ћетод дл€ получени€ числа дочерних узлов
         return children.size();
+    }
+
+    string getData() const { // Ќовый метод дл€ получени€ значени€ узла
+        return data;
     }
 
     void print(ofstream& outFile, int lvl = 0) const 

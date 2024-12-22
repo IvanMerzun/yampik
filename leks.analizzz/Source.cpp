@@ -2,6 +2,7 @@
 #include "Parser.h"
 #include "HashT.h"
 #include "Lexer.h"
+#include "SemanticAnalyzer.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -51,6 +52,10 @@ int main()
         ofstream outFile("outparser.txt");
         ast.print(outFile);
         outFile.close();
+
+
+        SemanticAnalyzer semanticAnalyzer("outsemat.txt");
+        semanticAnalyzer.analyze(ast);
     }
     catch (const std::exception& e)
     {

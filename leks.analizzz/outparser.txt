@@ -15,28 +15,19 @@ Function
         Id
           rez
         ,
-          Id
-            xz
-        VarList
+        Id
+          xz
       ;
-    Descriptions
-      Descr
-        Type
-          float
-        VarList
-          Id
-            x
-          ,
-            Id
-              z
-            ,
-              Id
-                y
-            VarList
-          VarList
-        ;
-      Descriptions
-        eps
+    Descr
+      Type
+        float
+      VarList
+        Id
+          x
+        ,
+        Id
+          z
+      ;
   Operators
     Op
       Id
@@ -47,61 +38,50 @@ Function
           Const
             10
       ;
-    Operators
-      Op
-        Id
-          z
-        =
-        Expr
-          SimpleExpr
-            Const
-              2.5
-        ;
-      Operators
-        Op
-          Id
-            x
-          =
+    Op
+      Id
+        z
+      =
+      Expr
+        SimpleExpr
+          Const
+            2.5
+        +
+        SimpleExpr
+          Const
+            4.1
+      ;
+    Op
+      Id
+        x
+      =
+      Expr
+        SimpleExpr
+          Const
+            3.5
+      ;
+    Op
+      Id
+        rez
+      =
+      Expr
+        SimpleExpr
+          ftoi
+          (
           Expr
             SimpleExpr
-              Const
-                3.5
-          ;
-        Operators
-          Op
-            Id
-              y
-            =
-            Expr
-              SimpleExpr
-                Id
-                  x
-              +
-              SimpleExpr
-                Id
-                  z
-              +
-              SimpleExpr
-                Id
-                  y
-            ;
-          Operators
-            Op
               Id
-                rez
-              =
-              Expr
-                SimpleExpr
-                  itof
-                  (
-                  Expr
-                    SimpleExpr
-                      Const
-                        2
-                  )
-              ;
-            Operators
-              eps
+                z
+            +
+            SimpleExpr
+              Id
+                x
+            -
+            SimpleExpr
+              Const
+                4.0
+          )
+      ;
   End
     return
     Id

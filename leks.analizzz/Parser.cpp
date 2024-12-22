@@ -110,27 +110,23 @@ void Parser::End(Node& n) {
 }
 void Parser::Descriptions(Node& n) {
     if (currentToken.type == TYPE) {
+        // Добавляем Descr только для одного описания переменной
         n.addSon("Descr");
-        Descr(n.getSon(0)); // Узел Descr
+        Descr(n.getSon(n.getChildCount() - 1)); // Узел Descr для текущего описания переменной
 
-        n.addSon("Descriptions");
-        Descriptions(n.getSon(1)); // Рекурсивный вызов для Descriptions
+        // Рекурсивно вызываем Descriptions для обработки следующего описания переменной
+        Descriptions(n);
     }
-    else {
-        n.addSon("eps"); // Узел для пустой цепочки
-    }
+    
 }
 void Parser::Operators(Node& n) {
     if (currentToken.type == ID_NAME) {
         n.addSon("Op");
-        Op(n.getSon(0)); // Узел Op
+        Op(n.getSon(n.getChildCount() - 1)); // Узел Op
 
-        n.addSon("Operators");
-        Operators(n.getSon(1)); // Рекурсивный вызов
+        Operators(n);
     }
-    else {
-        n.addSon("eps"); // Узел для пустой цепочки
-    }
+    
 }
 void Parser::Descr(Node& n) {
     n.addSon("Type");
@@ -148,15 +144,19 @@ void Parser::Descr(Node& n) {
     }
 }
 void Parser::VarList(Node& n) {
+   
+    // Начнем с добавления первого идентификатора в VarList
     n.addSon("Id");
-    Id(n.getSon(0)); // Узел Id
+    Id(n.getSon(0)); // Узел для первого Id
 
-    if (currentToken.value == ",") {
+    // Теперь обрабатываем запятые и следующие идентификаторы
+    while (currentToken.value == ",") {
         n.addSon(",");
-        nextToken();
+        nextToken(); // Пропускаем запятую
 
-        n.addSon("VarList");
-        VarList(n.getSon(1)); // Рекурсивный вызов для VarList
+        // Добавляем следующий Id
+        n.addSon("Id");
+        Id(n.getSon(n.getChildCount() - 1)); // Получаем последний добавленный узел и добавляем новый Id
     }
 }
 void Parser::Type(Node& n) {

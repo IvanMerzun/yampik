@@ -131,6 +131,7 @@
     <ClCompile Include="Lexer.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Parser.cpp" />
+    <ClCompile Include="SemanticAnalyzer.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Token.cpp" />
   </ItemGroup>
@@ -138,12 +139,14 @@
     <Text Include="input.txt" />
     <Text Include="outparser.txt" />
     <Text Include="output.txt" />
+    <Text Include="outsemat.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HashT.h" />
     <ClInclude Include="Lexer.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Parser.h" />
+    <ClInclude Include="SemanticAnalyzer.h" />
     <ClInclude Include="Token.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

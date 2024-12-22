@@ -1,0 +1,6 @@
+int rez xz 3 DECL
+float x z 3 DECL
+xz  10 =
+z  2.5 4.1 + =
+x  3.5 =
+rez  ftoi  z x 4.0 + - CALL =
