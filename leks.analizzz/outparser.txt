@@ -92,11 +92,15 @@ Function
             SimpleExpr
               Const
                 20
+            +
+            SimpleExpr
+              Const
+                4
           )
         +
         SimpleExpr
           Const
-            4.5
+            4.2
       ;
   End
     return

@@ -316,22 +316,27 @@ private:
     {
         string rez;
 
-        for (int i = 0; i < node.getChildCount(); ++i)
+        if (node.getChildCount() == 1)
         {
-            if (node.getSon(i).getData() == "SimpleExpr")
+            rez +=  processSimpleExpr(node.getSon(0));
+        }
+        
+        else
+        {
+            rez +=  processSimpleExpr(node.getSon(0)) + " " + processSimpleExpr(node.getSon(2)) + " " + node.getSon(1).getData() + " ";
+
+            for (int i = 3; i < node.getChildCount(); ++i)
             {
-                rez += " " + processSimpleExpr(node.getSon(i));  // Обрабатываем операнды
+                if (i % 2 != 0)
+                {
+                    continue;
+                }
+                else
+                {
+                    rez +=  processSimpleExpr(node.getSon(i)) + " " + node.getSon(i-1).getData() + " ";
+                }
             }
         }
-
-        for (int i = 0; i < node.getChildCount(); ++i)
-        {
-            if (node.getSon(i).getData() == "+" || node.getSon(i).getData() == "-")
-            {
-                rez += " " + node.getSon(i).getData();  // Добавляем оператор
-            }
-        }
-
         return rez;
     }
 
