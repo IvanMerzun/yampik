@@ -224,6 +224,13 @@ private:
                 }
             }
 
+            if (node.getSon(0).getSon(0).getData() == "(")
+            {
+                string rezu = getExprType(node.getSon(0).getSon(1));
+                return rezu;
+
+            }
+
         }
         //берем тип первого первого при помощи getExprTypeNeed, далее провер€ем циклом, чтобы остальные операнды справа были точно такие же, находим хоть один не такой, значит ошибка. 
 
@@ -309,6 +316,12 @@ private:
                 throw std::runtime_error("Expected float in ftoi.");
             }
         }
+
+        if (node.getSon(0).getData() == "(")
+        {
+            string rezu = getExprType(node.getSon(1));
+            return rezu;
+        }
     }
 
 
@@ -354,6 +367,12 @@ private:
         else if (node.getSon(0).getData() == "ftoi" || node.getSon(0).getData() == "itof")
         {
             result += processFunctionCall(node) + "CALL";  // ќбрабатываем функцию
+        }
+
+        //скобочки
+        else if (node.getSon(0).getData() == "(")
+        {
+            result += processExpr(node.getSon(1));
         }
 
         return result;

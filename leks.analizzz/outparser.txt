@@ -38,8 +38,12 @@ Function
       =
       Expr
         SimpleExpr
-          Const
-            50
+          (
+          Expr
+            SimpleExpr
+              Const
+                50
+          )
       ;
     Op
       Id
@@ -97,10 +101,6 @@ Function
               Const
                 4
           )
-        +
-        SimpleExpr
-          Const
-            4.2
       ;
   End
     return

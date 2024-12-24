@@ -6,6 +6,6 @@ float main()
     m = 10 + 4 + f;
     z = 2;
     x = 3.5;
-    rez = itof(m + 20 + 4) + 4.2;
+    rez = itof(m + 20 + 4);
     return rez;
 }
