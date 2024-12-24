@@ -51,12 +51,16 @@ Function
       =
       Expr
         SimpleExpr
-          Const
-            10
-        +
-        SimpleExpr
-          Const
-            4
+          (
+          Expr
+            SimpleExpr
+              Const
+                10
+            +
+            SimpleExpr
+              Const
+                4
+          )
         +
         SimpleExpr
           Id

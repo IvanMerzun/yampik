@@ -1,7 +1,7 @@
 int z m f 4 DECL
 float x rez 3 DECL
 f 50 =
-m 10 4 + f +  =
+m 10 4 +  f +  =
 z 2 =
 x 3.5 =
 rez itof m 20 + 4 +  CALL =

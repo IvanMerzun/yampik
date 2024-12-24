@@ -2,8 +2,8 @@ float main()
 {
     int z, m, f;
     float x, rez;
-    f = 50;
-    m = 10 + 4 + f;
+    f = (50);
+    m = (10 + 4) + f;
     z = 2;
     x = 3.5;
     rez = itof(m + 20 + 4);

@@ -173,71 +173,73 @@ private:
         
         if ( node.getChildCount() == 1)
         {
-            if (node.getSon(0).getSon(0).getData() == "Const")
-            {
-                std::string value = node.getSon(0).getSon(0).getSon(0).getData();
 
-                // Если в значении есть точка, считаем это float, иначе int
-                if (value.find('.') != std::string::npos)
-                {
-                    return "float";  // Число с плавающей точкой
-                }
-                else {
-                    return "int";  // Целое число
-                }
-            }
+            string currentType = getSimpleExprType(node.getSon(0));
+            return currentType;
 
-            // Если это переменная, то возвращаем её тип из таблицы символов
-            if (node.getSon(0).getSon(0).getData() == "Id") {
-                std::string varName = node.getSon(0).getSon(0).getSon(0).getData();
-                if (declaredVariables.find(varName) != declaredVariables.end()) {
-                    return declaredVariables[varName].type;
-                }
-                else {
-                    throw std::runtime_error("Variable '" + varName + "' used before declaration.");
-                }
-            }
+            //if (node.getSon(0).getSon(0).getData() == "Const")
+            //{
+            //    std::string value = node.getSon(0).getSon(0).getSon(0).getData();
 
-            if (node.getSon(0).getSon(0).getData() == "itof")
-            {
-                string rezu = getExprType(node.getSon(0).getSon(2));
-                if (rezu == "int")
-                {
-                    return "float";
-                }
-                else
-                {
-                    throw std::runtime_error("Expected int in itof.");
-                }
-            }
+            //    // Если в значении есть точка, считаем это float, иначе int
+            //    if (value.find('.') != std::string::npos)
+            //    {
+            //        return "float";  // Число с плавающей точкой
+            //    }
+            //    else {
+            //        return "int";  // Целое число
+            //    }
+            //}
 
-            if (node.getSon(0).getSon(0).getData() == "ftoi")
-            {
-                string rezu = getExprType(node.getSon(0).getSon(2));
-                if (rezu == "float")
-                {
-                    return "int";
-                }
-                else
-                {
-                    throw std::runtime_error("Expected float in ftoi.");
-                }
-            }
+            //// Если это переменная, то возвращаем её тип из таблицы символов
+            //if (node.getSon(0).getSon(0).getData() == "Id") {
+            //    std::string varName = node.getSon(0).getSon(0).getSon(0).getData();
+            //    if (declaredVariables.find(varName) != declaredVariables.end()) {
+            //        return declaredVariables[varName].type;
+            //    }
+            //    else {
+            //        throw std::runtime_error("Variable '" + varName + "' used before declaration.");
+            //    }
+            //}
 
-            if (node.getSon(0).getSon(0).getData() == "(")
-            {
-                string rezu = getExprType(node.getSon(0).getSon(1));
-                return rezu;
+            //if (node.getSon(0).getSon(0).getData() == "itof")
+            //{
+            //    string rezu = getExprType(node.getSon(0).getSon(2));
+            //    if (rezu == "int")
+            //    {
+            //        return "float";
+            //    }
+            //    else
+            //    {
+            //        throw std::runtime_error("Expected int in itof.");
+            //    }
+            //}
 
-            }
+            //if (node.getSon(0).getSon(0).getData() == "ftoi")
+            //{
+            //    string rezu = getExprType(node.getSon(0).getSon(2));
+            //    if (rezu == "float")
+            //    {
+            //        return "int";
+            //    }
+            //    else
+            //    {
+            //        throw std::runtime_error("Expected float in ftoi.");
+            //    }
+            //}
+
+            //if (node.getSon(0).getSon(0).getData() == "(")
+            //{
+            //    string rezu = getExprType(node.getSon(0).getSon(1));
+            //    return rezu;
+            //}
 
         }
-        //берем тип первого первого при помощи getExprTypeNeed, далее проверяем циклом, чтобы остальные операнды справа были точно такие же, находим хоть один не такой, значит ошибка. 
 
         else if (node.getChildCount() > 1)
         {
 
-            string currentType = getExprTypeNeed(node.getSon(0)); // Инициализируем тип первого операнда
+            string currentType = getSimpleExprType(node.getSon(0)); // Инициализируем тип первого операнда
 
             for (int i = 1; i < node.getChildCount(); ++i)
             {
@@ -248,7 +250,7 @@ private:
 
                 // Обрабатываем SimpleExpr
                 if (node.getSon(i).getData() == "SimpleExpr") {
-                    string operandType = getExprTypeNeed(node.getSon(i));  // Вызов функции для получения типа
+                    string operandType = getSimpleExprType(node.getSon(i));  // Вызов функции для получения типа
 
                     // Проверяем совместимость типов
                     if (currentType != operandType) {
@@ -264,7 +266,7 @@ private:
         
     }
 
-    string getExprTypeNeed(const Node& node)
+    string getSimpleExprType(const Node& node)
     {
         if (node.getSon(0).getData() == "Const")
         {
