@@ -1,7 +1,7 @@
 Function
   Begin
     Type
-      float
+      int
     FunctionName
       main
     (
@@ -20,6 +20,9 @@ Function
         ,
         Id
           f
+        ,
+        Id
+          d
       ;
     Descr
       Type
@@ -38,12 +41,8 @@ Function
       =
       Expr
         SimpleExpr
-          (
-          Expr
-            SimpleExpr
-              Const
-                50
-          )
+          Const
+            50
       ;
     Op
       Id
@@ -51,24 +50,20 @@ Function
       =
       Expr
         SimpleExpr
-          (
-          Expr
-            SimpleExpr
-              Const
-                10
-            +
-            SimpleExpr
-              Const
-                4
-          )
+          Const
+            10
         +
+        SimpleExpr
+          Const
+            4
+        -
         SimpleExpr
           Id
             f
       ;
     Op
       Id
-        z
+        io
       =
       Expr
         SimpleExpr
@@ -83,6 +78,23 @@ Function
         SimpleExpr
           Const
             3.5
+      ;
+    Op
+      Id
+        d
+      =
+      Expr
+        SimpleExpr
+          Id
+            m
+        +
+        SimpleExpr
+          Id
+            f
+        +
+        SimpleExpr
+          Const
+            234
       ;
     Op
       Id
@@ -104,11 +116,24 @@ Function
             SimpleExpr
               Const
                 4
+            +
+            SimpleExpr
+              Id
+                d
+            +
+            SimpleExpr
+              ftoi
+              (
+              Expr
+                SimpleExpr
+                  Const
+                    3.1
+              )
           )
       ;
   End
     return
     Id
-      rez
+      f
     ;
     }
